@@ -14,4 +14,4 @@ Binary exploitation on x64,x86 and ARM, `Heap exploitation`, Kernel exploitation
 ### Programming languages
 C++,`JavaScript`, C, `GO`, Python, `Java`, C#, `Sql`, HTML, `CSS`
 ### Development
-Next.js, `React.js`, Node.js, `MongoDB`, Flask, `Gin-gonic`, Docker, `AWS`, MySql, `Express.js`, Git
+Next.js, `React.js`, Redux, `Node.js`, MongoDB, `Flask`, Gin-gonic, `Docker`, AWS, `MySql`, Express.js, Git
