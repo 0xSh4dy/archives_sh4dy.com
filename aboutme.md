@@ -1,7 +1,7 @@
 ---
 layout: page
 title: About me
-subtitle: Information Security and software development enthusiast
+subtitle: Software Development enthusiast
 ---
 
 Hi, I'm Rakshit Awasthi, a B.Tech student at IIT Roorkee. 
