@@ -79,8 +79,12 @@ Now, let's see how hidden classes and inline cache work together. Whenever a met
 Garbage collection is a form of automatic memory management. Memory that is allocated by a program but no longer referenced is called garbage. Garbage collector reclaims all such memory. The V8 engine uses the `Orinoco` garbage collector which internally uses the [`Mark and Sweep Algorithm`](https://www.geeksforgeeks.org/mark-and-sweep-garbage-collection-algorithm/). There are three ways(parallel, incremental and concurrent) by which the Orinoco collector collects garbage. In parallel collection, the main thread uses the help of a few helper threads parallely to clean garbage and the main execution is stopped for a while. In incremental collection, the main thread takes turns to collect the garbage. The thread first collects garbage for sometime, then switches to the main execution for a while, then switches back to garbage collection and so on. In concurrent collection, garbage collection is done by helper threads in background i.e. the main thread is not disturbed. 
 
 References:
-https://medium.com/@monica1109/how-does-web-browsers-work-c95ad628a509
-https://dev.to/edisonpappi/how-javascript-engines-chrome-v8-works-50if
-https://hacks.mozilla.org/2017/02/a-crash-course-in-just-in-time-jit-compilers/
-https://www.geeksforgeeks.org/how-v8-compiles-javascript-code
-https://richardartoul.github.io/jekyll/update/2015/04/26/hidden-classes.html
+[https://medium.com/@monica1109/how-does-web-browsers-work-c95ad628a509](https://medium.com/@monica1109/how-does-web-browsers-work-c95ad628a509)
+<br>
+[https://dev.to/edisonpappi/how-javascript-engines-chrome-v8-works-50if](https://dev.to/edisonpappi/how-javascript-engines-chrome-v8-works-50if)
+<br>
+[https://hacks.mozilla.org/2017/02/a-crash-course-in-just-in-time-jit-compilers/](https://dev.to/edisonpappi/how-javascript-engines-chrome-v8-works-50if)
+<br>
+[https://www.geeksforgeeks.org/how-v8-compiles-javascript-code](https://dev.to/edisonpappi/how-javascript-engines-chrome-v8-works-50if)
+<br>
+[https://richardartoul.github.io/jekyll/update/2015/04/26/hidden-classes.html](https://richardartoul.github.io/jekyll/update/2015/04/26/hidden-classes.html)
