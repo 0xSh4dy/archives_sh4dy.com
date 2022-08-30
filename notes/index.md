@@ -9,7 +9,7 @@ I have started to write down notes on security related concepts I learn via read
     <a href="/notes/heap-exploitation">Heap exploitation</a>
 </div>
 <div>
-    <a href="/notes/binary-exploitation">Binary exploitation</a>
+    <a href="/notes/file-streams">File Stream Exploitation</a>
 </div>
 <div>
     <a href="/notes/kernel-exploitation">Kernel exploitation</a>
