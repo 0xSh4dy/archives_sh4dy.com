@@ -83,6 +83,6 @@ p.interactive()
 <img  src="https://github.com/0xSh4dy/ctf_writeups/raw/master/cake-ctf-2022/images/strVsCstr_3.png"/>
 
 ### References
-https://ptr-yudai.hatenablog.com/entry/2021/11/30/235732
+<a href="https://ptr-yudai.hatenablog.com/entry/2021/11/30/235732">https://ptr-yudai.hatenablog.com/entry/2021/11/30/235732</a>
 <br>
-https://www.slideshare.net/AngelBoy1/pwning-in-c-basic
+<a href="https://www.slideshare.net/AngelBoy1/pwning-in-c-basic">https://www.slideshare.net/AngelBoy1/pwning-in-c-basic</a>
