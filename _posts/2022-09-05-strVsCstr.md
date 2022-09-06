@@ -1,7 +1,7 @@
 ---
 layout: post
 readtime: true
-tags: [got-overwrite,partial-relro,cpp,string]
+tags: [got-overwrite,partial-relro,cpp,string,pwn]
 ---
 ### Attachments : [chall](https://github.com/0xSh4dy/ctf_writeups/raw/master/cake-ctf-2022/strVsCstr/chall) , [main.cpp](https://github.com/0xSh4dy/ctf_writeups/raw/master/cake-ctf-2022/strVsCstr/main.cpp)
 <br>
