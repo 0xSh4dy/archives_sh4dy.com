@@ -75,7 +75,7 @@ static size_t new_do_write (FILE *fp, const char *data, size_t to_do)
   return count;
 }
 ```
-We need to bypass the `else if` block in order to hit `_IO_SYSWRITE` which executes the `write` system call.
+We need to bypass the `else if` block in order to hit `_IO_SYSWRITE`.
 For that, we need to set `fp->_flags & _IO_IS_APPENDING` to a non-zero value.
 
 Now, let's do some calculations in order to find the appropriate value for `stdout->_flags`
