@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Arbitrary Address Read via _IO_2_1_stdout_
+title: Arbitrary Read via _IO_2_1_stdout_
 css: "/assets/css/modeOne.css"
 readtime: true
 comments: true
