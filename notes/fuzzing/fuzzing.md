@@ -1,0 +1,2 @@
+## Fuzzing
+Fuzz testing or fuzzing is a a black box software testing technique that involves feeding random inputs to a computer program to find software vulnerabilities. The program is monitored for exceptions such as crashes, built-in assertions, or potential memory leaks. 
