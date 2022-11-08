@@ -1,4 +1,12 @@
-# Windows Registry
+---
+layout: page
+title: Windows Registry
+comments: false
+tags: [reversing,malware,registry,persistence]
+css: "assets/css/modeOne.css"
+---
+
+
 The Windows registry is a hierarchical database that stores low-level settings, information, options,etc. for the OS and applications that use it. Malwares use the registry for persistence or configuration data.
 
 - Registry Editor (Regedit) is a tool that can be used to view and edit the Windows registry. 
@@ -67,10 +75,12 @@ The `MicrosoftRedirectionURL` field present in `HKEY_LOCAL_MACHINE\SOFTWARE\Micr
 
 - Some common functions used to manipulate the registry are `RegOpenKeyEx`,`RegSetValueEx`,`RegGetValue`
 References: 
-https://cocomelonc.github.io/
-https://en.wikipedia.org/wiki/Windows_Registry
-https://tweaklibrary.com/what-are-registry-root-keys/
-https://pentestlab.blog/2020/01/07/persistence-appinit-dlls/
-https://sensei-infosec.netlify.app/forensics/registry/persistence/2020/04/15/malware-persistence-registry.html
-https://redcanary.com/threat-detection-report/techniques/dll-search-order-hijacking/
-https://book.hacktricks.xyz/windows-hardening/windows-local-privilege-escalation/dll-hijacking
+[https://cocomelonc.github.io/](https://cocomelonc.github.io/)
+<br>
+[https://en.wikipedia.org/wiki/Windows_Registry](https://en.wikipedia.org/wiki/Windows_Registry)
+<br>
+[https://tweaklibrary.com/what-are-registry-root-keys/](https://tweaklibrary.com/what-are-registry-root-keys/)
+[https://pentestlab.blog/2020/01/07/persistence-appinit-dlls/](https://pentestlab.blog/2020/01/07/persistence-appinit-dlls/)
+[https://sensei-infosec.netlify.app/forensics/registry/persistence/2020/04/15/malware-persistence-registry.html](https://sensei-infosec.netlify.app/forensics/registry/persistence/2020/04/15/malware-persistence-registry.html)
+[https://redcanary.com/threat-detection-report/techniques/dll-search-order-hijacking/](https://redcanary.com/threat-detection-report/techniques/dll-search-order-hijacking/)
+[https://book.hacktricks.xyz/windows-hardening/windows-local-privilege-escalation/dll-hijacking](https://book.hacktricks.xyz/windows-hardening/windows-local-privilege-escalation/dll-hijacking)
