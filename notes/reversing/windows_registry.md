@@ -77,16 +77,10 @@ The `MicrosoftRedirectionURL` field present in `HKEY_LOCAL_MACHINE\SOFTWARE\Micr
 
 ## References:
 
-[https://cocomelonc.github.io/](https://cocomelonc.github.io/)
-
-[https://en.wikipedia.org/wiki/Windows_Registry](https://en.wikipedia.org/wiki/Windows_Registry)
-
-[https://tweaklibrary.com/what-are-registry-root-keys/](https://tweaklibrary.com/what-are-registry-root-keys/)
-
-[https://pentestlab.blog/2020/01/07/persistence-appinit-dlls/](https://pentestlab.blog/2020/01/07/persistence-appinit-dlls/)
-
-[https://sensei-infosec.netlify.app/forensics/registry/persistence/2020/04/15/malware-persistence-registry.html](https://sensei-infosec.netlify.app/forensics/registry/persistence/2020/04/15/malware-persistence-registry.html)
-
-[https://redcanary.com/threat-detection-report/techniques/dll-search-order-hijacking/](https://redcanary.com/threat-detection-report/techniques/dll-search-order-hijacking/)
-
-[https://book.hacktricks.xyz/windows-hardening/windows-local-privilege-escalation/dll-hijacking](https://book.hacktricks.xyz/windows-hardening/windows-local-privilege-escalation/dll-hijacking)
+1. [https://cocomelonc.github.io/](https://cocomelonc.github.io/)
+2. [https://en.wikipedia.org/wiki/Windows_Registry](https://en.wikipedia.org/wiki/Windows_Registry)
+3.[https://tweaklibrary.com/what-are-registry-root-keys/](https://tweaklibrary.com/what-are-registry-root-keys/)
+4.[https://pentestlab.blog/2020/01/07/persistence-appinit-dlls/](https://pentestlab.blog/2020/01/07/persistence-appinit-dlls/)
+5.[https://sensei-infosec.netlify.app/forensics/registry/persistence/2020/04/15/malware-persistence-registry.html](https://sensei-infosec.netlify.app/forensics/registry/persistence/2020/04/15/malware-persistence-registry.html)
+6.[https://redcanary.com/threat-detection-report/techniques/dll-search-order-hijacking/](https://redcanary.com/threat-detection-report/techniques/dll-search-order-hijacking/)
+7.[https://book.hacktricks.xyz/windows-hardening/windows-local-privilege-escalation/dll-hijacking](https://book.hacktricks.xyz/windows-hardening/windows-local-privilege-escalation/dll-hijacking)
