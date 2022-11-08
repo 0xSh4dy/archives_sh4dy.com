@@ -74,13 +74,25 @@ The UninstallString field `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\Current
 The `MicrosoftRedirectionURL` field present in `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Event Viewer` stores a url that is opened whenever user decides to view the help menu. Inserting the path to a local file (file://path) into `MicrosoftRedirectionURL` will execute that file instead of opening the url.
 
 - Some common functions used to manipulate the registry are `RegOpenKeyEx`,`RegSetValueEx`,`RegGetValue`
-References: 
+
+## References:
+
 [https://cocomelonc.github.io/](https://cocomelonc.github.io/)
 <br>
+
 [https://en.wikipedia.org/wiki/Windows_Registry](https://en.wikipedia.org/wiki/Windows_Registry)
 <br>
+
 [https://tweaklibrary.com/what-are-registry-root-keys/](https://tweaklibrary.com/what-are-registry-root-keys/)
+<br>
+
 [https://pentestlab.blog/2020/01/07/persistence-appinit-dlls/](https://pentestlab.blog/2020/01/07/persistence-appinit-dlls/)
+<br>
+
 [https://sensei-infosec.netlify.app/forensics/registry/persistence/2020/04/15/malware-persistence-registry.html](https://sensei-infosec.netlify.app/forensics/registry/persistence/2020/04/15/malware-persistence-registry.html)
+<br>
+
 [https://redcanary.com/threat-detection-report/techniques/dll-search-order-hijacking/](https://redcanary.com/threat-detection-report/techniques/dll-search-order-hijacking/)
+<br>
+
 [https://book.hacktricks.xyz/windows-hardening/windows-local-privilege-escalation/dll-hijacking](https://book.hacktricks.xyz/windows-hardening/windows-local-privilege-escalation/dll-hijacking)
