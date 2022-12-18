@@ -371,6 +371,24 @@ Handles are items that have been opened or created in the OS, such as a window, 
 ## File Mappings
 File mappings allow a file to be loaded into memory and manipulated easily. The `CreateFileMapping` function loads a file from disk into memory. `MapViewOfFile` returns a pointer to the base address of the mapping, which can be used to access the file in memory. This functionality is used by launchers, loaders and injectors to read and modify PE files.
 
+## Mutex
+Mutexes are global objects that coordinate multiple processes and threads. They are mainly used to control access to shared resources. A thread gains access to a mutex with a call to `WaitForSingleObject`. A mutex can be created using the `CreateMutex` function. One process can get a handle to another process's mutex by using the `OpenMutex` call. Only one thread can own a mutex at a time. Any thread attempting to gain access to the same mutex must wait. When a thread is finished using a mutex, it uses the `ReleaseMutex` function. Mutexes are widely used by malwares to ensure that only one instance of malware runs at a time.
+
+## Services
+Windows allow tasks to run without their own processes or threads by using services that run as background applications. Services are normally run as SYSTEM or any other privileged account. Few WinAPI functions dealing with services are `OpenSCManager`,`CreateService`,`StartService`. The most commonly used service type used by malwares is `WIN32_SHARE_PROCESS` type, which stores the code for the service in a DLL, and combines several different services in a single, shared process. For example, `svchost.exe` runs the `WIN32_SHARE_PROCESS` type services.
+
+## Component Object Model
+COM is an interface standard that makes it possible for different software components to call each other's code without knowledge of specifics about each other. COM works with any programming language. COM is implemented as a client-server framework. Clients are programs that are making use of COM objects and servers are the reusable software components - the COM objects themselves. Each thread that uses COM must call the `OleInitialize` or `CoInitializeEx` at least once prior to calling any other COM library functions. 
+
+- CLSID and IID -> COM objects are accessed via their globally unique identifiers (GUIDs) known as class identifiers (CLSIDs) and interface identifiers(IIDs).
+
+`CoCreateInstance` is used to get access to the COM functionality. Malwares that implement a COM server are easy to detect because they export functions such as `DllCanUnloadNow`,`DllGetClassObject`,`DllInstall`,`DllRegisterServer`, `DllUnregisterServer`,etc.
+
+## Exceptions
+An exception is an event that disrupts the normal flow of the program's intructions. Execution flow is transferred to a special routine that resolves the exception. Debuggers are usually given two opportunities to handle the same exception: a first-chance exception and a second-chance exception. 
+  - First chance exception : when an exception occurs while a debugger is attached, the program being debugged stops executing, and the debugger is given a first chance at control. It can either handle the exception or pass it to the program.
+
+  -Second chance exception : if the application does not handle the exception, the debugger is given another chance to handle it. It means that the program would have crashed if the debugger was not attached. 
 
 ## Some useful Windbg commands
 ```
@@ -384,7 +402,7 @@ dt _PEB_LDR_DATA
 
 
 ## References:
-https://0xrick.github.io/win-internals/pe1/
+<a href="https://0xrick.github.io/win-internals/pe1/">https://0xrick.github.io/win-internals/pe1/</a>
 https://www.ired.team/offensive-security/code-injection-process-injection/finding-kernel32-base-and-function-addresses-in-shellcode
 http://practicalmalwareanalysis.com/
 https://en.wikipedia.org/wiki/Hungarian_notation
