@@ -78,6 +78,29 @@ Now, let's see how hidden classes and inline cache work together. Whenever a met
 ### Garbage Collection
 Garbage collection is a form of automatic memory management. Memory that is allocated by a program but no longer referenced is called garbage. Garbage collector reclaims all such memory. The V8 engine uses the `Orinoco` garbage collector which internally uses the [`Mark and Sweep Algorithm`](https://www.geeksforgeeks.org/mark-and-sweep-garbage-collection-algorithm/). There are three ways(parallel, incremental and concurrent) by which the Orinoco collector collects garbage. In parallel collection, the main thread uses the help of a few helper threads parallely to clean garbage and the main execution is stopped for a while. In incremental collection, the main thread takes turns to collect the garbage. The thread first collects garbage for sometime, then switches to the main execution for a while, then switches back to garbage collection and so on. In concurrent collection, garbage collection is done by helper threads in background i.e. the main thread is not disturbed. 
 
+### Mark and Sweep Algorithm
+Mark and sweep is one of the earliest and best-known garbage collection algorithms. It involves two phases: Mark phase and sweep phase.
+
+`Mark Phase`: When an object is created, its mark bit is set to zero. In mark phase, the marked bit is set to one for all the reachable objects. Each object is treated as a graph node. We start from every pointer or node outside the heap (pointers present on the run-time stack or static area) and recursively mark each object that can be reached from that node (depth-first traversal).
+
+`Sweep Phase`: This phase clears the heap memory for all unreachable objects. Each object on the heap is analysed. All marked objects are unmarked and all unmarked objects are treated as garbage and swept out.
+
+
+### Reference Counting Garbage Collection
+An object is said to be garbage if there are zero references pointing to it. This algorithm looks out for those objects that have zero references left. The greatest limitation of reference counting is seen in case of cycles. Consider the following example
+
+```js
+function fn(){
+	var x = {};
+	var y = {};
+	x.a = y;
+	y.a = x;
+};
+
+fn();
+```
+x and y will go out of scope after the function call, so they are effectively useless. But, the reference counting algorithm considers that since both the objects are referenced at least once, neither can be operated upon for garbage collection.
+
 References:
 [https://medium.com/@monica1109/how-does-web-browsers-work-c95ad628a509](https://medium.com/@monica1109/how-does-web-browsers-work-c95ad628a509)
 <br>
