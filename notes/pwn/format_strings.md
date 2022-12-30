@@ -327,7 +327,7 @@ void win(){
 void func(){
 	char buf[80];
 	puts("How are you?");
-	scanf("%80s",buf);
+	fgets(buf,80,stdin);
 	printf(buf);
 }
 
