@@ -73,11 +73,10 @@ Format specifiers in C are used to take inputs and print the output of a type. I
 		<td>%hh</td>
 		<td>Specifies that the length is one byte</td>
 	</tr>
-		<tr>
+	<tr>
 		<td>%h</td>
 		<td>Specifies that the length is two bytes</td>
 	</tr>
-		</tr>
 		<tr>
 		<td>%n</td>
 		<td>writes number of characters printed by to a variable (only the characters present before %n in a string count)</td>
