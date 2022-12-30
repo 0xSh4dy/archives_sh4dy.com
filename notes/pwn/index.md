@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Security Notes
+title: Pwn
 css: "index.css"
 ---
 
