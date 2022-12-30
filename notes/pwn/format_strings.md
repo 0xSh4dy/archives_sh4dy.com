@@ -99,7 +99,7 @@ int main(){
 }
 ```
 Let's send a bunch of `%p` and see what happens. 
-
+<img src='https://raw.githubusercontent.com/0xSh4dy/0xSh4dy.github.io/master/assets/img/fmtstr/fmtstr_01.png'>
 Thus, we see that we can dump local stack variables. Format string bug is so powerful, it may lead to memory corruption and arbitrary code execution. The first few QWORDs come from printf's stack and the data after that comes from the stack of the caller function.
 The `rsp` register stores a pointer to the top of the stack. Let's say this pointer is `ptr`. Then, in this case, `%6$p` gives the value stored at `*ptr`, `%7$p` gives the value stored at *(ptr+8), `%8$p` gives the value stored at *(ptr+16) and so on. Let's verify this using `pwndbg`.
 ```py
