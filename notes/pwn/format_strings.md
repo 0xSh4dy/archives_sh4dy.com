@@ -2,6 +2,7 @@
 layout: page
 title: Format Strings
 tags: [format_strings, pwn]
+comments: true
 ---
 
 Format specifiers in C are used to take inputs and print the output of a type. It is a way to tell the compiler the type of data that is being used for i/o. They are mostly used with the printf and scanf family of functions such as printf, sprintf, scanf, sscanf. The following table shows the use of various format specifiers in C / C++
@@ -384,6 +385,8 @@ p.interactive()
 ### Code execution in case of FULL RELRO
 FULL RELRO makes the GOT read-only which means that we cannot overwrite the GOT entries to call functions. In case of `glibc version < 2.34`, we can overwrite malloc hooks such as `__malloc_hook` and `__free_hook` with the target address. Calling `malloc` will call the pointer stored at `__malloc_hook`. Similarly, calling `free` will call the pointer stored at `__free_hook`. 
 Note: The functions `fopen` and `fclose` call `malloc` and `free` respectively. So, the malloc hooks can also be triggered in case of file I/O . 
+
+`printf` and `scanf` internally call malloc and free in case of large input/output , let's say %75000c.
 
 References:
 <br>
