@@ -378,7 +378,13 @@ payload += p64(puts_got)
 p.sendline(payload)
 p.interactive()
 ```
+
 <img src='https://github.com/0xSh4dy/0xSh4dy.github.io/blob/master/assets/img/fmtstr/fmtstr_08.png?raw=true'>
+
+### Code execution in case of FULL RELRO
+FULL RELRO makes the GOT read-only which means that we cannot overwrite the GOT entries to call functions. In case of `glibc version < 2.34`, we can overwrite malloc hooks such as `__malloc_hook` and `__free_hook` with the target address. Calling `malloc` will call the pointer stored at `__malloc_hook`. Similarly, calling `free` will call the pointer stored at `__free_hook`. 
+Note: The functions `fopen` and `fclose` call `malloc` and `free` respectively. So, the malloc hooks can also be triggered in case of file I/O . 
+
 References:
 <br>
 
