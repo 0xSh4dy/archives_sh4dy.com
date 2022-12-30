@@ -107,6 +107,7 @@ pwndbg> b *0x0000000000401263
 ```
 With the breakpoint set right after the call to printf, we can run the program and send this input `%6$p.%7$p.%8$p.%9$p`.
 
+<img src='https://github.com/0xSh4dy/0xSh4dy.github.io/blob/master/assets/img/fmtstr/fmtstr_03.png?raw=true'>
 This gives the output `0xdeadbeef.0xcafebabe.0xbabecafe.0xd00df00d`. Let's examine the stack pointer.
 ```py
 pwndbg> p/x $rsp
@@ -194,6 +195,7 @@ pwndbg> x/10gx $rsp
 0x7fff7d03ed50:	0x00007fff7d03ed60	0x0000000000401234
 ```
 `0x404060` is the address of the buffer `secret`. It is stored at the offset `9`. Sending `%9$s` with some padding to account for the 8 byte alignment would print the string stored at `0x404060`.
+<img src='https://github.com/0xSh4dy/0xSh4dy.github.io/blob/master/assets/img/fmtstr/fmtstr_04.png?raw=true'>
 
 References:
 [https://www.freecodecamp.org/news/format-specifiers-in-c/](https://www.freecodecamp.org/news/format-specifiers-in-c/)
