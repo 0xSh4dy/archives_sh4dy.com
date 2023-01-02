@@ -12,5 +12,8 @@ I have started writing down notes on security related concepts I learn via readi
     <a href="/notes/pwn">Pwn</a>
 </div>
 <div>
+    <a href="/notes/cpp_stuff">C++ Stuff</a>
+</div>
+<div>
     <a href="/notes/reversing">Reverse Engineering</a>
 </div>

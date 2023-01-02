@@ -118,3 +118,5 @@ _RangeHash	The range-hashing function (in the terminology of Tavori and Dreizin)
 ```
 
 A complex procedure is used to calculate the bucket index.
+
+To be continued...
