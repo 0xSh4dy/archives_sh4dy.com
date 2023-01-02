@@ -114,11 +114,11 @@ class MaybeLocal {
 
 ### Data
 It is the superclass of values (all objects that can exist in the V8 heap) and API object templates.
-<img src='https://github.com/0xSh4dy/0xSh4dy.github.io/tree/master/assets/img/v8/data.png'/>
+<img src='https://github.com/0xSh4dy/0xSh4dy.github.io/blob/master/assets/img/v8/data.png?raw=true'/>
 
 ### Value
 It is a subclass of `Data` and adds a number of methods that check if a Value is of a certain type, like `IsUndefined`, `IsNull`, `IsNumber`, etc.
-<img src='https://github.com/0xSh4dy/0xSh4dy.github.io/tree/master/assets/img/v8/value.png'>
+<img src='https://github.com/0xSh4dy/0xSh4dy.github.io/blob/master/assets/img/v8/value.png?raw=true'>
 
 ### Handle
 An object reference managed by the v8 garbage collector. All objects returned from v8 have to be tracked by the garbage collector so that it knows if the objects are still alive. Because the garbage collector may move objects, it is unsafe to point directly to an object. Instead, all objects are stored in handles which are known by the garbage collector and updated whenever an object moves. Handles should always be passed by value and they should never be allocated on the heap. There are two types of handles: `Local` handles and `Persistent` handles. 
