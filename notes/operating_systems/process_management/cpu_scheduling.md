@@ -68,4 +68,5 @@ This algorithm allows a process to move between queues. Processes are separated 
 - The method used to determine when to upgrade a process to a higher priority queue.
 - The method used to determine when to demote a process to a lower priority queue.
 - The method used to determine which queue a process will enter when that process needs service.
+
 <hr>
