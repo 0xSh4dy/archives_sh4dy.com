@@ -12,7 +12,7 @@ Binary exploitation is all about finding vulnerabilities in compiled binaries (f
 
 We need to understand the memory layout of binaries before diving into the fundamentals of binary exploitation.
 
-<img src='https://he-s3.s3.amazonaws.com/media/uploads/383f472.png'>
+<img src='https://github.com/0xSh4dy/0xSh4dy.github.io/raw/master/assets/img/pwn/pwn_01.png'/>
 
 A typical memory representation of a C program consists of the following sections:
 - .text
@@ -180,6 +180,7 @@ Dump of assembler code for function func:
 ### Buffer Overflow
 A buffer overflow occurs when a program attempts to put more data in a buffer than it can hold. The extra data overflows into the adjacent storage and overwrites the data already present there.
 
+<img src='https://github.com/0xSh4dy/0xSh4dy.github.io/raw/master/assets/img/pwn/pwn_02.png'>
 Consider a simple C++ program
 ```cpp
 #include<iostream>
@@ -316,3 +317,18 @@ p.sendline(payload)
 p.interactive()
 
 ```
+<img src='https://github.com/0xSh4dy/0xSh4dy.github.io/raw/master/assets/img/pwn/pwn_03.png'>
+
+Awesome, we successfully called the function `callme` by exploiting a buffer overflow.
+
+References
+[https://youtube.com/playlist?list=PLhixgUqwRTjxglIswKp9mpkfPNfHkzyeN](https://youtube.com/playlist?list=PLhixgUqwRTjxglIswKp9mpkfPNfHkzyeN)
+
+<br>
+[https://dhavalkapil.com/blogs/Buffer-Overflow-Exploit/](https://dhavalkapil.com/blogs/Buffer-Overflow-Exploit/)
+
+<br>
+[https://guyinatuxedo.github.io/](https://guyinatuxedo.github.io/)
+
+<br>
+[https://ctf101.org/](https://ctf101.org/)
