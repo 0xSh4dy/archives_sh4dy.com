@@ -138,6 +138,12 @@ Pushes the value of rbp and rip onto the stack, then jumps to the provided addre
 call 0x401106
 ```
 
+`square brackets`
+```
+mov QWORD PTR [rbp-0x8],rdi
+```
+Square brackets are used to dereference a pointer. This is similar to `*(rbp-0x8)=rdi`, in C/C++.
+
 `ret`
 
 Pops the return address off the stack and continues execution at that address.
@@ -176,6 +182,8 @@ Dump of assembler code for function func:
    0x0000000000401121 <+27>:	pop    rbp
    0x0000000000401122 <+28>:	ret
 ```
+
+The `add rax,rdx` adds the values and stores the result in the `rax` register, which is the return value (read the disassembly carefully to find out how the function arguments are passed into rdx and rax respecively).
 
 ### Buffer Overflow
 A buffer overflow occurs when a program attempts to put more data in a buffer than it can hold. The extra data overflows into the adjacent storage and overwrites the data already present there.
