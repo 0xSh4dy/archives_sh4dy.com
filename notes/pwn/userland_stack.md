@@ -306,7 +306,7 @@ Here, the calling convention is `SysV`, so the first 6 function arguments will b
 pwndbg> p/x $rbp
 $1 = 0x7fffffffddd0
 ```
-The return address is present 8 bytes after the pointer stored at rbp i.e `0x7fffffffddd8`. We can call any arbitrary function if me manage to overwrite the return address with the address of the function we wanna call.
+The return address is stored at the location 8 bytes after the pointer stored at rbp i.e at `0x7fffffffddd8`. The current return address is `0x00007ffff7c00083` which means that the program will jump to `0x00007ffff7c00083` after executing the current function. We can call any arbitrary function if me manage to overwrite the return address with the address of the function we wanna call.
 ```
 pwndbg> p &callme
 $2 = (<text variable, no debug info> *) 0x4011b6 <callme()>
