@@ -9,9 +9,12 @@ My interest lies in software security and development. I'm also a part of [InfoS
 
 # Skills
 ### Security
-Binary exploitation on x64,x86 and ARM, `Heap exploitation`, Kernel exploitation, `Reverse engineering`, web security basics, `digital forensics`.
+Binary exploitation on x64,x86 and ARM, `GLIBC Heap exploitation`, Kernel exploitation, `Reverse engineering`, web and cloud security.
 
 ### Programming
 Data Structures and Algorithms, C++,`JavaScript`, C, `GO`, Python, `Java`, C#, `Sql`, HTML, `CSS`
 ### Development
-Next.js, `React.js`, Redux, `Node.js`, MongoDB, `Flask`, Gin-gonic, `Docker`, AWS, `MySql`, Express.js, Git
+Next.js, `React.js`, Redux, `Node.js`, MongoDB, `Flask`, Gin-gonic,`MySql`, Express.js, Git
+
+### DevOps
+Docker, Kubernetes, AWS, Jenkins
