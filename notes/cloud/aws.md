@@ -147,6 +147,16 @@ Listing EC2 instances using AWS CLI
 ```
 aws --profile profile_name ec2 describe-instances  > instances.txt
 ```
+#### Instance Profile
+Just like an IAM user represents a person, an instance profile represents EC2 instances. An instance profile is a container for an IAM role that you can use to pass role information to an EC2 instance when the instance starts.
+
+For roles related to EC2, if you're not allowed to do `list-role-policies`, just attach it to an EC2 instance. It can be done if you're allowed to create/modify instance profiles. To create a new EC2 instance using AWS CLI, we need the following-
+
+1. A subnet to start the EC2 instance in.
+2. A security group that allows SSH access to the EC2 instance.
+3. An SSH keypair to SSH into the EC2 instance.
+
+Install AWS CLI on the EC2 instance and then start enumerating roles and policies.
 
 #### EC2 snapshots
 A snapshot is a copy of the storage blocks that have been modified since the previous snapshot was created. The first snapshot contains a full copy of the volume. Subsequent snapshots contain only the modified storage blocks.
