@@ -1,0 +1,2 @@
+### Cloud Infrastructure Entitlement Management (CIEM)
+CIEM is the process of managing identities and privileges in cloud environments. CIEM solutions apply the principle of least privilege access to cloud infrastructure and services, helping organizations defend against data breaches, malicious attacks and other risks posed by excessive cloud permissions. 
